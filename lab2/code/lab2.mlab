@@ -2,15 +2,55 @@
 network  {
   watchlist = ""
 }
-module OrthoView2D {
+module Comment {
   internal  {
-    frame = "869 -323 120 56"
+    frame = "1261 429 88 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "553 166 400 430"
+        geometry = "11 441 256 208"
+        sizeHint = "256 208"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "When loading a new image, please change the image size in Resamble3D the same as the image volume, or the result will be totally black."
+  }
+}
+module itkMedianImageFilter {
+  internal  {
+    frame = "677 365 152 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = itkMedianImageFilter
+    updateMode = AutoUpdate
+    applyMode = AutoApply
+    minValue = 0
+    maxValue = 244
+    applyMinMax = FALSE
+    autoSetMinMax = TRUE
+    clampOutImageValues = FALSE
+    lowerOutSideMode = MinValue
+    upperOutSideMode = MaxValue
+    lowerOutSideValue = 0
+    upperOutSideValue = 1
+    radius = "1 1 1 0 0 0"
+    coordinateTolerance = 1e-06
+    directionTolerance = 1e-06
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "909 -315 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "730 359 400 430"
         sizeHint = "400 430"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -31,26 +71,26 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 219
-    grayCenter = 109.5
+    grayWidth = 244
+    grayCenter = 122
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = Voxel
     showCurrentPos = TRUE
-    worldPosition = "141.945892333984 104.075508117676 -0.300000041723251"
+    worldPosition = "26.6326522827148 75.9918441772461 6.30000019073486"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module OrthoView2D {
   internal  {
-    frame = "517 229 120 56"
+    frame = "533 117 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "424 229 400 430"
+        geometry = "560 72 400 430"
         sizeHint = "400 430"
         wasOpen = no
       }
@@ -73,22 +113,22 @@ module OrthoView2D {
     enableSlicing = TRUE
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 219
-    grayCenter = 109.5
+    grayWidth = 244
+    grayCenter = 122
     annotationOn = TRUE
     annotationSizeMode = ANNO_SHOW_DETAILED
     annotationFontSize = ANNO_SIZE_AUTO
     valueHighPrecision = TRUE
     annoCoords = Voxel
     showCurrentPos = TRUE
-    worldPosition = "63.6520462036133 77.6938858032227 19.2000007629395"
+    worldPosition = "60.6734657287598 90.4591751098633 -0.299999982118607"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module GaussSmoothing {
   internal  {
-    frame = "689 365 128 56"
+    frame = "689 285 128 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -100,7 +140,7 @@ module GaussSmoothing {
   }
   fields  {
     instanceName = GaussSmoothing
-    sigma = 4
+    sigma = 2.5
     unit = voxel
     xDim = TRUE
     yDim = TRUE
@@ -114,7 +154,7 @@ module GaussSmoothing {
 }
 module Info {
   internal  {
-    frame = "1049 -219 64 56"
+    frame = "1009 -195 64 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -130,11 +170,11 @@ module Info {
 }
 module OrthoView2D {
   internal  {
-    frame = "645 -291 120 56"
+    frame = "533 -99 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "48 86 400 430"
+        geometry = "651 204 400 430"
         sizeHint = "400 430"
         wasOpen = no
       }
@@ -172,7 +212,7 @@ module OrthoView2D {
 }
 module FastMorphology {
   internal  {
-    frame = "725 -147 120 56"
+    frame = "701 -99 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -202,7 +242,7 @@ module FastMorphology {
 }
 module Info {
   internal  {
-    frame = "777 445 64 56"
+    frame = "1017 373 64 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -218,11 +258,11 @@ module Info {
 }
 module OrthoView2D {
   internal  {
-    frame = "533 -195 120 56"
+    frame = "533 13 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "424 229 400 430"
+        geometry = "330 101 400 430"
         sizeHint = "400 430"
         wasOpen = no
       }
@@ -253,20 +293,20 @@ module OrthoView2D {
     valueHighPrecision = TRUE
     annoCoords = Voxel
     showCurrentPos = TRUE
-    worldPosition = "53.865306854248 35.9938850402832 19.2000007629395"
+    worldPosition = "49.1846923828125 64.9285659790039 -0.299999982118607"
     coloredMode = FALSE
     hiResRendering = TRUE
   }
 }
 module Resample3D {
   internal  {
-    frame = "765 141 104 56"
+    frame = "709 117 104 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "712 162 327 328"
+        geometry = "728 100 327 328"
         sizeHint = "327 328"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -277,9 +317,9 @@ module Resample3D {
     isotropic = TRUE
     filterAlways = FALSE
     filterAlwaysTolerance = 0
-    zoom = "1 1.0000000390473 66.000004532051"
-    imageSize = "254 278 66"
-    voxelSize = "0.599999976145871 0.599999976145871 0.599999976145871"
+    zoom = "0.999999971488683 1 73.9999978901626"
+    imageSize = "253 278 74"
+    voxelSize = "0.599999999574249 0.599999999574249 0.599999999574249"
     subVoxelShift = "0 0 -1.73472347597681e-18"
     useReferenceImage = FALSE
   }
@@ -307,7 +347,7 @@ module Arithmetic2 {
 }
 module Info {
   internal  {
-    frame = "585 141 64 56"
+    frame = "857 117 64 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -323,7 +363,7 @@ module Info {
 }
 module Info {
   internal  {
-    frame = "577 13 64 56"
+    frame = "849 13 64 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -339,12 +379,12 @@ module Info {
 }
 module OtsuThreshold {
   internal  {
-    frame = "677 13 152 56"
+    frame = "685 13 152 56"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
       window _default {
-        geometry = "536 356 206 130"
+        geometry = "262 353 206 130"
         sizeHint = "206 130"
         wasOpen = no
       }
@@ -355,12 +395,12 @@ module OtsuThreshold {
     binSize = 256
     autoApply = TRUE
     backgroundThreshold = -1
-    threshold = 50
+    threshold = 35
   }
 }
 module OrthoProjection {
   internal  {
-    frame = "685 261 120 72"
+    frame = "693 197 120 72"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -396,63 +436,21 @@ module MinMaxScan {
     preferredIntType = PreferUnsigned
   }
 }
-module OrthoView2D {
-  internal  {
-    frame = "1029 373 120 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "457 222 400 430"
-        sizeHint = "400 430"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = OrthoView2D
-    inventorInputOn = TRUE
-    inventorOutputOn = FALSE
-    synchronizePosition = TRUE
-    layout = LAYOUT_CUBE_EQUAL
-    filterMode = FILTER_LINEAR
-    synchronizeZoom = TRUE
-    synchronizePanning = FALSE
-    useGlobalInputImage = TRUE
-    snapToCenter = FALSE
-    alternCubeLayout = FALSE
-    timePoint = 0
-    useManagedInteraction = FALSE
-    enableSlicing = TRUE
-    borderOn = TRUE
-    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    grayWidth = 219
-    grayCenter = 109.5
-    annotationOn = TRUE
-    annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationFontSize = ANNO_SIZE_AUTO
-    valueHighPrecision = TRUE
-    annoCoords = Voxel
-    showCurrentPos = TRUE
-    worldPosition = "136.414291381836 16.42041015625 20.6999988555908"
-    coloredMode = FALSE
-    hiResRendering = TRUE
-  }
-}
 module ImageLoad {
   internal  {
     frame = "889 445 96 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "816 255 309 398"
+        geometry = "390 136 309 398"
         sizeHint = "309 398"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
   fields  {
     instanceName = ImageLoad
-    filename = "/Users/Songyou/Documents/VIBOT/UdG/Medical Image Analysis/MIA_lab/lab2/lab2_abus/t0200403301al.dcm"
+    filename = "/Users/Songyou/Documents/VIBOT/UdG/Medical Image Analysis/MIA_lab/lab2/lab2_images/t0200254601ml.dcm"
     autoLoad = TRUE
     readRaw = FALSE
     rawX = 1
@@ -472,9 +470,10 @@ module ImageLoad {
   }
 }
 connections  {
+  itkMedianImageFilter.input0 = MinMaxScan.output0
   OrthoView2D5.image = Arithmetic2.output0
-  OrthoView2D3.image = OrthoProjection.output0
-  GaussSmoothing.input0 = MinMaxScan.output0
+  OrthoView2D3.image = Resample3D.output0
+  GaussSmoothing.input0 = itkMedianImageFilter.output0
   Info2.input0 = Arithmetic2.output0
   OrthoView2D2.image = FastMorphology.output0
   FastMorphology.input0 = OtsuThreshold1.output0
@@ -488,6 +487,5 @@ connections  {
   OtsuThreshold1.input0 = Resample3D.output0
   OrthoProjection.input0 = GaussSmoothing.output0
   MinMaxScan.input0 = ImageLoad.output0
-  OrthoView2D.image = MinMaxScan.output0
 }
 networkModel = ""
