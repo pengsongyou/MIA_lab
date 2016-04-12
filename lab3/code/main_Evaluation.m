@@ -3,7 +3,8 @@ clc
 clear
 
 %% Read images
-dir_2D = '../examples/';
+load 3DSegmentation
+dir_2D = './examples/';
 % Read images in the alg folder
 for i = 1 : 6
     dir_alg = strcat('/alg',num2str(i));
@@ -46,7 +47,7 @@ good_dist = zeros(4,6); % Smallest distance for each algorithm in each image
 
 thres_step = 4; % differece between two threshold
 rate_list = zeros(ceil(256/thres_step),2); % Contain tp and fp rate
-
+tic
 for im_num = 1 : 4
     figure;
     hold on;
@@ -106,7 +107,10 @@ for im_num = 1 : 4
     title(ti);
     hold off;
 end
-%% Compute overlap measures (Jaccard, Dice, Hausdorf)
+t = toc;
+fprintf('Getting ROC and AUC uses %f seconds.\n',t);
+
+%% Compute measures (Jaccard, Dice, Hausdorf)
 
 % Acquire the best threshold for each algorithm
 best_dist = min(good_dist);
@@ -119,6 +123,7 @@ end
 jac = zeros(6,4);% Jaccard Index
 dice = zeros(6,4);% Dice Index
 haus = zeros(6,4);% Hausdorff Distance
+tic
 for alg_num = 1 : 6
     for i = 1 : 4
         threshold = best_thres(alg_num);
@@ -154,9 +159,9 @@ for alg_num = 1 : 6
         haus(alg_num,i) = hausdorff(im_now,gd_th);
     end
 end
-
+t = toc;
+fprintf('Computing different measures uses %f seconds.\n',t);
 %% Evaluation of 3D images
-load 3DSegmentation
 [jac3D,dice3D,haus3D] = Evaluate3D(mask,segmentation);
 fprintf('\nJaccard Index of the 3D image is : %f \n',jac3D);
 fprintf('Dice Index of the 3D image is : %f \n',dice3D);
