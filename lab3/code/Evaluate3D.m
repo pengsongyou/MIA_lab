@@ -1,5 +1,4 @@
-function[jac,dice,haus]=  Evaluate3D(image,mask,segmentation)
-num_slice = size(image,3);
+function[jac,dice,haus]=  Evaluate3D(mask,segmentation)
 
 tp_image = mask.* segmentation;
 tp_number = sum(tp_image(:));
