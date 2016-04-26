@@ -1,6 +1,6 @@
 function [ Iregistered, M] = affineReg2D( Imoving, Ifixed )
 %Example of 2D affine registration
-%   Robert Martí  (robert.marti@udg.edu)
+%   Robert Mart?  (robert.marti@udg.edu)
 %   Based on the files from  D.Kroon University of Twente 
 
 % clean
@@ -14,26 +14,46 @@ Ifixed=im2double(imread('lenag2.png'));
 ISmoving=imfilter(Imoving,fspecial('gaussian'));
 ISfixed=imfilter(Ifixed,fspecial('gaussian'));
 
-mtype = 'sd'; % metric type: s: ssd m: mutual information e: entropy 
-ttype = 'r'; % rigid registration, options: r: rigid, a: affine
+mtype = 'm'; % metric type: sd: ssd m: mutual information e: entropy 
+ttype = 'a'; % rigid registration, options: r: rigid, a: affine
 
-% Parameter scaling of the Translation and Rotation
-scale=[1 1 1];
+switch ttype
+    case 'r' %squared differences
+        % Parameter scaling of the Translation and Rotation
+        scale=[1 1 1];
+        % Set initial affine parameters
+        x = [0 0 0]; % For affine tranformation
+    case 'a'
+        % Parameter scaling of the Translation and Rotation
+        scale=10.*[1 1 1 1 1 1];
+        % Set initial affine parameters
+        x = [1 0 0 0 1 0]; % For affine tranformation
 
-% Set initial affine parameters
-x=[0 0 0];
+    otherwise
+        error('Unknown registration type');
+end;
 
 x=x./scale;
-    
-[x]=fminsearch(@(x)affine_function(x,scale,ISmoving,ISfixed,mtype),x,optimset('Display','iter','MaxIter',1000, 'TolFun', 1.000000e-06,'TolX',1.000000e-06, 'MaxFunEvals', 1000*length(x)));
-
+tic    
+[x]=fminsearch(@(x)affine_function(x,scale,ISmoving,ISfixed,mtype,ttype),x,optimset('Display','iter','MaxIter',1000, 'TolFun', 1.000000e-06,'TolX',1.000000e-06, 'MaxFunEvals', 1000*length(x)));
+toc
 % Scale the translation, resize and rotation parameters to the real values
 x=x.*scale;
 
-% Make the affine transformation matrix
- M=[ cos(x(3)) sin(x(3)) x(1);
-     -sin(x(3)) cos(x(3)) x(2);
- 	0 0 1];
+
+switch ttype
+    case 'r' %squared differences
+         M=[ cos(x(3)) sin(x(3)) x(1);
+            -sin(x(3)) cos(x(3)) x(2);
+             0 0 1];
+    case 'a'
+        M = [x(1) x(2) x(3); 
+             x(4) x(5) x(6); 
+             0 0 1];
+    otherwise
+        error('Unknown registration type');
+end;
+
 
 % Transform the image 
 Icor=affine_transform_2d_double(double(Imoving),double(M),0); % 3 stands for cubic interpolation

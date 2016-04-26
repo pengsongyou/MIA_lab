@@ -1,4 +1,4 @@
-function [e]=affine_registration_function(par,scale,Imoving,Ifixed,mtype)
+function [e]=affine_registration_function(par,scale,Imoving,Ifixed,mtype,ttype)
 % This function affine_registration_image, uses affine transfomation of the
 % 3D input volume and calculates the registration error after transformation.
 %
@@ -30,9 +30,29 @@ function [e]=affine_registration_function(par,scale,Imoving,Ifixed,mtype)
 % Function is written by D.Kroon University of Twente (July 2008)
 x=par.*scale;
 
-M=[ cos(x(3)) sin(x(3)) x(1);
-   -sin(x(3)) cos(x(3)) x(2);
-   0 0 1];
+% % Rotation and translation transformation
+% % M=[ cos(x(3)) sin(x(3)) x(1);
+% %    -sin(x(3)) cos(x(3)) x(2);
+% %    0 0 1];
+% 
+% % Affine transformation
+% M = [x(1) x(2) x(3); 
+%      x(4) x(5) x(6); 
+%      0 0 1];
+
+switch ttype
+    case 'r' %squared differences
+        M=[ cos(x(3)) sin(x(3)) x(1);
+           -sin(x(3)) cos(x(3)) x(2);
+            0 0 1];
+    case 'a'
+        M = [x(1) x(2) x(3); 
+             x(4) x(5) x(6); 
+             0 0 1];
+    otherwise
+        error('Unknown registration type');
+end;
+
 
 I3=affine_transform_2d_double(double(Imoving),double(M),0); % 3 stands for cubic interpolation
 
@@ -40,6 +60,8 @@ I3=affine_transform_2d_double(double(Imoving),double(M),0); % 3 stands for cubic
 switch mtype
     case 'sd' %squared differences
         e=sum((I3(:)-Ifixed(:)).^2)/numel(I3);
+    case 'm'
+        e = mutual_info(I3,Ifixed);
     otherwise
         error('Unknown metric type');
 end;
