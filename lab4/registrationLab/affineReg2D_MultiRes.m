@@ -40,7 +40,7 @@ switch ttype
         x = [0 0 0]; % For affine tranformation
     case 'a'
         % Parameter scaling of the Translation and Rotation
-        scale=1.*[1 1 1 1 1 1];
+        scale=1.*[1 1 100 1 1 100];
         % Set initial affine parameters
         x = [1 0 0 0 1 0]; % For affine tranformation       
     otherwise
