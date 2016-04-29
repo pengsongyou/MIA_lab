@@ -28,17 +28,12 @@ function [e]=affine_registration_function(par,scale,Imoving,Ifixed,mtype,ttype)
 % example,
 %
 % Function is written by D.Kroon University of Twente (July 2008)
-x=par.*scale;
-
-% % Rotation and translation transformation
-% % M=[ cos(x(3)) sin(x(3)) x(1);
-% %    -sin(x(3)) cos(x(3)) x(2);
-% %    0 0 1];
+%
+% Function is modified by Songyou Peng, Erasmus+ masters in Vision and
+% Robotics (VIBOT), University of Girona (Spain), Heriot-Watt Univerity (UK) and
+% University of Burgundy (France) (April 2016)
 % 
-% % Affine transformation
-% M = [x(1) x(2) x(3); 
-%      x(4) x(5) x(6); 
-%      0 0 1];
+x=par.*scale;
 
 switch ttype
     case 'r' %squared differences

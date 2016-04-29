@@ -33,6 +33,24 @@ function e = mutual_info(Imove,Ifix)
     
     % Mutual information 
     e = -(E1 + E2 - E_joint);
+    
+    
+    % Test
+%     p1 = H1 / numel(Imove);
+%     p2 = H2 / numel(Ifix);
+%     h = joint_hist(Imove,Ifix);
+%     h = h./numel(h);
+%     e_tmp = 0;
+%     for m = 1 : 256
+%         if p1(m) ~= 0
+%             for n = 1 : 256
+%                 if h(m,n) ~= 0 && p2(n) ~= 0
+%                     e_tmp = e_tmp + h(m,n) * log2(h(m,n) / ((p1(m) * p2(n))));
+%                 end
+%             end
+%         end
+%     end
+    
 end
 
 function h = joint_hist(Imove,Ifix)

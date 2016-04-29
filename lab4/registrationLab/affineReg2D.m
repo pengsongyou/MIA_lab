@@ -3,29 +3,28 @@ function [ Iregistered, M] = affineReg2D( Imoving, Ifixed )
 %   Robert Mart?  (robert.marti@udg.edu)
 %   Based on the files from  D.Kroon University of Twente 
 
-% clean
 clear all; close all; clc;
 
-% Read two imges 
-Imoving=im2double(imread('lenag3.png')); 
+% % Read two imges 
+Imoving=im2double(imread('lenag1.png')); 
 Ifixed=im2double(imread('lenag2.png'));
 
-% Smooth both images for faster registration
+% % Smooth both images for faster registration
 ISmoving=imfilter(Imoving,fspecial('gaussian'));
 ISfixed=imfilter(Ifixed,fspecial('gaussian'));
 
-mtype = 'm'; % metric type: sd: ssd m: mutual information e: entropy 
+mtype = 'sd'; % metric type: sd: ssd m: mutual information e: entropy 
 ttype = 'a'; % rigid registration, options: r: rigid, a: affine
 
 switch ttype
     case 'r' %squared differences
         % Parameter scaling of the Translation and Rotation
-        scale=[1 1 1];
+        scale=[10 10 1];
         % Set initial affine parameters
         x = [0 0 0]; % For affine tranformation
     case 'a'
         % Parameter scaling of the Translation and Rotation
-        scale=10.*[1 1 1 1 1 1];
+        scale=1.*[1 1 100 1 1 100];
         % Set initial affine parameters
         x = [1 0 0 0 1 0]; % For affine tranformation
 
@@ -65,5 +64,6 @@ figure,
     subplot(2,2,3), imshow(Icor);
     subplot(2,2,4), imshow(abs(Ifixed-Icor));
 
+% Iregistered = Icor;
 end
 
